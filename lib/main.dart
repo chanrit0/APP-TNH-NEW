@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:app_tnh2/config/constants.dart';
 import 'package:app_tnh2/helper/RouteAwareAnalytics.dart';
 import 'package:app_tnh2/provider/providerHome.dart';
 import 'package:app_tnh2/screens/CheckAuth.dart';
