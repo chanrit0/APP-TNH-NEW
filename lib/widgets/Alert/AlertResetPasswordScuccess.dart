@@ -1,12 +1,11 @@
 import 'package:app_tnh2/styles/colors.dart';
 import 'package:app_tnh2/styles/textStyle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-AlertResetPasswordScuccess(BuildContext context, String code) {
+alertResetPasswordScuccess(BuildContext context, String code) {
   AlertDialog alert = AlertDialog(
     content: MediaQuery(
-      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
       child: InkWell(
         onTap: () {
           Navigator.pop(context);
@@ -34,7 +33,9 @@ AlertResetPasswordScuccess(BuildContext context, String code) {
                       ? 'การรีเซ็ตรหัสผ่านถูกส่งไปที่อีเมลองท่านเรียบร้อยแล้ว'
                       : code == '02'
                           ? 'ท่านเคยรีเซ็ตรหัสผ่านไปแล้ว ท่านสามารถรีเซ็ตรหัสผ่านได้เพียง\nวันละ 1 ครั้งเท่านั้น'
-                          : 'ไม่พบหมายเลขบัตรประชาชน',
+                          : code == '03'
+                              ? 'เปลี่ยนรหัสผ่านไม่สำเร็จ!'
+                              : 'ไม่พบหมายเลขบัตรประชาชน',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: code == '00' ? ColorBtRegister : ColorOreng,

@@ -1,7 +1,7 @@
 import 'package:app_tnh2/controller/api.dart';
 import 'package:app_tnh2/model/profile/modelProfile.dart';
-import 'package:app_tnh2/styles/textStyle.dart';
-import 'package:app_tnh2/widgets/Alert/AlertEditPersonSuccess.dart';
+import 'package:app_tnh2/styles/textStyle.dart'; 
+import 'package:app_tnh2/widgets/Alert/alertEditPersonSuccess.dart';
 import 'package:app_tnh2/widgets/stateScreenDetails.dart';
 import 'package:app_tnh2/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class _EditPersonScreenState extends State<EditPersonScreen> {
           if (value?.resCode == '00')
             {
               AppLoading.hide(context),
-              AlertEditPersonSuccess(context),
+              alertEditPersonSuccess(context),
             }
         });
   }

@@ -8,6 +8,7 @@ import 'package:app_tnh2/model/profile/modelProfileName.dart';
 import 'package:app_tnh2/provider/providerHome.dart';
 import 'package:app_tnh2/screens/healthArticles/healthArticles.dart';
 import 'package:app_tnh2/styles/textStyle.dart';
+import 'package:app_tnh2/widgets/Alert/AlertSignUpSuccess.dart';
 import 'package:app_tnh2/widgets/Alert/alertLogout.dart';
 import 'package:app_tnh2/screens/home/widget/widgetArticle.dart';
 import 'package:app_tnh2/screens/home/appointment/appointment.dart';
@@ -31,7 +32,6 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:app_tnh2/config/keyStorages.dart';
-import 'package:app_tnh2/widgets/Alert/alertSignUpSuccess.dart';
 import 'package:app_tnh2/helper/notification_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ApiConstants.deviceUpDateversion)
         .then((value) {
       if (value?.resCode == '00') {
-        AlertUpdateVersion(
+        alertUpdateVersion(
             context,
             refresh,
             Platform.isAndroid
@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
         await postService.funGetAgreementSave('3', true);
         await postService.funGetAgreementSave('4', true);
         // ignore: use_build_context_synchronously
-        AlertSignUpSuccess(context);
+        alertSignUpSuccess(context);
       }
     });
   }

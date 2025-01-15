@@ -2,7 +2,7 @@ import 'package:app_tnh2/styles/colors.dart';
 import 'package:app_tnh2/styles/textStyle.dart';
 import 'package:flutter/material.dart';
 
-AlertSignUpSuccess(BuildContext context) {
+alertSignUpSuccess(BuildContext context) {
   AlertDialog alert = AlertDialog(
     content: MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:app_tnh2/model/article/modelArticle.dart' as ar;
 
@@ -19,13 +17,13 @@ class ProviderHome with ChangeNotifier {
 
   String cardID = '';
   String get dataCardID => cardID;
-  set setCardID(value) {
+  set setCardID(String value) {
     cardID = value;
   }
 
   String passsword = '';
   String get dataPasssword => passsword;
-  set setPasssword(value) {
+  set setPasssword(String value) {
     passsword = value;
   }
 

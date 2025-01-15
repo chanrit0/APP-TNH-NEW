@@ -1,4 +1,3 @@
-import 'package:app_tnh2/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 class StateScreen extends StatelessWidget {

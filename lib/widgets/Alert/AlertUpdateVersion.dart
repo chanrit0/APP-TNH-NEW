@@ -3,7 +3,7 @@ import 'package:app_tnh2/styles/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-AlertUpdateVersion(
+alertUpdateVersion(
     BuildContext context, Function onPressed, String device, String uri) {
   AlertDialog alert = AlertDialog(
     content: MediaQuery(

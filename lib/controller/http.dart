@@ -29,7 +29,7 @@ class HttpRequest {
       options.sendTimeout = const Duration(seconds: 30);
       options.receiveTimeout = const Duration(seconds: 30);
       return handler.next(options);
-    }, onError: (DioError error, handler) async {
+    }, onError: (DioException error, handler) async {
       if (error.response?.statusCode == 401) {
         //error.response?.data['message'] == "Refresh Token Expired."
         if ((error.response?.data['message'] == "Token Expired.")) {
@@ -97,45 +97,45 @@ class HttpRequest {
 
   Future<dynamic> postDio(String uri, dynamic body) async {
     try {
-      final response = await api.post(baseUrl + uri, data: body);
+      Response response = await api.post(baseUrl + uri, data: body);
       return jsonEncode(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       handleResponseError(e.response, uri, e);
     }
   }
 
   Future<dynamic> getDio(String uri) async {
     try {
-      final response = await api.get(baseUrl + uri);
+      Response response = await api.get(baseUrl + uri);
       return jsonEncode(response.data);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       handleResponseError(e.response, uri, e);
     }
   }
 
   dynamic handleResponseError(
-      Response<dynamic>? response, String url, DioError e) {
+      Response<dynamic>? response, String url, DioException e) {
     switch (e.type) {
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         throw ApiNotRespondingException(
             "Request to API server was cancelled", url);
 
-      case DioErrorType.connectionTimeout:
+      case DioExceptionType.connectionTimeout:
         throw ApiNotRespondingException(
             "Connection timeout with API server", url);
 
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.receiveTimeout:
         throw ApiNotRespondingException(
             "Receive timeout in connection with API server", url);
 
-      case DioErrorType.badResponse:
+      case DioExceptionType.badResponse:
         _handleError(e.response?.statusCode, e.response?.data, url);
         break;
-      case DioErrorType.sendTimeout:
+      case DioExceptionType.sendTimeout:
         throw ApiNotRespondingException(
             "Send timeout in connection with API server", url);
 
-      case DioErrorType.unknown:
+      case DioExceptionType.unknown:
         throw NoInternerConnection('No Internet connection', url);
 
       default:

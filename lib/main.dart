@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:app_tnh2/controller/signin/singInContorller.dart';
 import 'package:app_tnh2/helper/RouteAwareAnalytics.dart';
 import 'package:app_tnh2/provider/providerHome.dart';
 import 'package:app_tnh2/screens/CheckAuth.dart';
+import 'package:app_tnh2/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -49,6 +51,9 @@ class _MyApp extends State<MyApp> {
           ChangeNotifierProvider(create: (_) {
             return ProviderHome();
           }),
+          ChangeNotifierProvider(create: (_) {
+            return SingInController();
+          }),
           Provider<AppLoading>(create: (_) => AppLoading()),
         ],
         child: ScreenUtilInit(
@@ -74,7 +79,7 @@ class _MyApp extends State<MyApp> {
                         systemOverlayStyle: const SystemUiOverlayStyle(
                             systemNavigationBarIconBrightness:
                                 Brightness.light)),
-                    primaryColor: Colors.red,
+                    primaryColor: ColorDefaultApp1,
                     fontFamily: 'RSU_BOLD',
                   ),
                   // navigatorObservers: [routeObserver],

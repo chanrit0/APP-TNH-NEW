@@ -3,7 +3,7 @@ import 'package:app_tnh2/helper/notification_service.dart';
 import 'package:app_tnh2/model/signUp/modelSignupStep2.dart';
 import 'package:app_tnh2/provider/providerHome.dart';
 import 'package:app_tnh2/styles/textStyle.dart';
-import 'package:app_tnh2/widgets/Alert/alertLoginFail.dart';
+import 'package:app_tnh2/widgets/Alert/alertLoginFail.dart'; 
 import 'package:app_tnh2/widgets/stateScreenDetails.dart';
 import 'package:app_tnh2/styles/colors.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -122,7 +122,7 @@ class _ConfirmEmailCreenState extends State<ConfirmEmailCreen>
               else
                 {
                   Navigator.pop(context),
-                  AlertLoginFail(context),
+                  alertLoginFail(context),
                 }
             });
   }

@@ -4,68 +4,87 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'app_dialog.dart';
 
-///
-/// Install:
-/// Declare provider to my_app
-/// Provider<AppLoading>(create: (_) => AppLoading()),
-///
-/// Usage:
-/// AppLoading.show(context);
-/// AppLoading.hide(context);
-///
 class AppLoading extends AppDialog {
-  /// Show loading dialog shortcut
-  /// Change icon at https://pub.dev/packages/flutter_spinkit
   static void show(BuildContext context,
       {String? text, Widget? textWidget, Widget? icon}) {
-    // if (context != null) {
-    context
-        .read<AppLoading>()
-        .showLoading(context, text: text, textWidget: textWidget, icon: icon);
-    // }
-  }
-
-  /// Hide loading dialog shortcut
-  static void hide(BuildContext context) {
-    if (context != null) {
-      context.read<AppLoading>().hideAppDialog();
+    try {
+      context.read<AppLoading>().showLoading(
+            context,
+            text: text,
+            textWidget: textWidget,
+            icon: icon,
+          );
+    } catch (e) {
+      debugPrint('Error showing loading dialog: $e');
     }
   }
 
-  /// Show loading dialog
-  /// Change icon at https://pub.dev/packages/flutter_spinkit
+  static void hide(BuildContext context) {
+    try {
+      context.read<AppLoading>().hideAppDialog();
+    } catch (e) {
+      debugPrint('Error hiding loading dialog: $e');
+    }
+  }
+
   Future<void> showLoading(BuildContext context,
       {String? text, Widget? textWidget, Widget? icon}) async {
-    return showAppDialog(
-      context,
-      Material(
-        type: MaterialType.transparency,
-        child: Center(
-          child: Container(
-            alignment: Alignment.center,
+    try {
+      await showAppDialog(
+        context,
+        Material(
+          type: MaterialType.transparency,
+          child: Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                icon ?? const SpinKitRing(color: ColorDefaultApp1),
+                icon ??
+                    const SpinKitRing(
+                      color: ColorDefaultApp1,
+                      size: 50.0,
+                    ),
+                const SizedBox(height: 16.0),
                 if (textWidget != null)
                   textWidget
                 else if (text != null)
                   Text(
                     text,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(
+                      fontFamily: 'RSU_BOLD',
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                else
+                  const Text(
+                    'Loading...',
+                    style: TextStyle(
+                      fontFamily: 'RSU_BOLD',
+                      color: Colors.transparent,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
               ],
             ),
           ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      debugPrint('Error displaying loading dialog: $e');
+    }
   }
 
-  /// Hide loading dialog
   void hideLoading({bool isClean = false}) {
-    hideAppDialog(isClean: isClean);
+    try {
+      hideAppDialog(isClean: isClean);
+    } catch (e) {
+      debugPrint('Error hiding loading dialog: $e');
+    }
   }
 }

@@ -44,7 +44,7 @@ alertResetPassword(BuildContext context, Service postService, String cardId) {
                                   if (value?.resCode == '00')
                                     {
                                       Navigator.pop(context),
-                                      AlertResetPasswordScuccess(
+                                      alertResetPasswordScuccess(
                                           context, '${value?.resCode}')
                                     }
                                 })

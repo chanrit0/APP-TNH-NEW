@@ -1,5 +1,3 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 double font44 = 44;
 double font34 = 34;
 double font30 = 30;
